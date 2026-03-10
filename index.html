@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡FELIS CUMPLE CAM!</title>
     <style>
         body {
@@ -12,6 +13,8 @@
             text-align: center;
             color: white;
             cursor: help;
+            margin: 0;
+            padding: 0;
         }
 
         @keyframes colorChange {
@@ -22,9 +25,10 @@
         }
 
         .titulo-loco {
-            font-size: 50px;
+            font-size: 10vw; /* Tamaño dinámico según el ancho de pantalla */
             text-shadow: 3px 3px #000;
             animation: bounce 0.5s infinite alternate;
+            padding: 10px;
         }
 
         @keyframes bounce {
@@ -33,38 +37,50 @@
         }
 
         .marquesina {
-            font-size: 25px;
+            font-size: 20px;
             background: yellow;
             color: red;
             font-weight: bold;
             padding: 10px;
             border: 4px ridge black;
+            white-space: nowrap;
         }
 
         .contenedor-videos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 15px;
-            padding: 20px;
+            /* Se adapta: 1 columna en celulres pequeños, 2 o más en pantallas grandes */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 10px;
+            padding: 15px;
         }
 
         video {
             width: 100%;
-            height: 180px; 
+            height: 150px; 
             object-fit: cover;
             border: 4px solid white;
             box-shadow: 5px 5px 0px black;
         }
 
         .boton-misterioso {
-            padding: 15px 30px;
-            font-size: 20px;
+            width: 90%; /* Casi todo el ancho en celular */
+            max-width: 400px;
+            padding: 20px;
+            font-size: 18px;
             background: lime;
             color: black;
             font-weight: bold;
             border: 5px outset white;
             cursor: pointer;
-            margin: 20px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .hola-texto {
+            font-size: 20vw; 
+            color: yellow; 
+            text-shadow: 5px 5px 0 black;
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -73,13 +89,13 @@
     <h1 class="titulo-loco">ffELIZ CUMMPLE CAM,</h1>
 
     <div class="marquesina">
-        <marquee scrollamount="30">
-            HOLAA CAM NO TE DI REGALO PERO TE HICE ESTA BABOSADAAAAAAASDASDASAA 
+        <marquee scrollamount="20">
+            HOLAA CAM NO TE DI REGALO PERO TE HICE ESTA BABOSADAAAAAAASDASDASAA 🎉🎁🎈
         </marquee>
     </div>
 
     <button class="boton-misterioso">
-        SOLO DALE CLICK BRO Y SUBI VOLUMEN  
+        SOLO TOCA AQUÍ Y SUBE EL VOLUMEN 🔊
     </button>
 
     <div class="contenedor-videos">
@@ -90,7 +106,7 @@
         <video src="vid1.mp4" autoplay loop muted playsinline></video>
     </div>
 
-    <p style="font-size: 100px; color: yellow; text-shadow: 5px 5px 0 black;">hola</p>
+    <p class="hola-texto">hola</p>
 
     <script>
         function activarCaos() {
@@ -98,10 +114,10 @@
             
             todosLosVideos.forEach(v => {
                 v.muted = false; 
-                v.play();        
+                v.play().catch(e => console.log("Error al reproducir:", e));        
             });
             
-            console.log("¡TODOS LOS VIDEOS SUENAN!");
+            console.log("¡MODO CAOS ACTIVADO!");
         }
 
         alert("ola cam dale aceptar");
